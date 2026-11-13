@@ -112,7 +112,7 @@ fn read_target_address() -> Result<u64, String> {
     let path = std::env::var_os("LOCALAPPDATA")
         .map(std::path::PathBuf::from)
         .ok_or_else(|| "LOCALAPPDATA unavailable".to_owned())?
-        .join("Free Say")
+        .join("SayAll")
         .join("rc003-target.ini");
     let text =
         std::fs::read_to_string(&path).map_err(|error| format!("read failed: {}", error.kind()))?;

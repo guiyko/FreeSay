@@ -198,7 +198,7 @@ impl AgentAccessStore {
         let base = std::env::var_os("LOCALAPPDATA")
             .map(PathBuf::from)
             .ok_or_else(|| "读不到 LOCALAPPDATA".to_owned())?;
-        Ok(base.join("Free Say").join("mcp").join("v1"))
+        Ok(base.join("SayAll").join("mcp").join("v1"))
     }
 
     #[cfg(test)]

@@ -125,7 +125,7 @@ impl TranscriptStore {
         let base = std::env::var_os("LOCALAPPDATA")
             .map(PathBuf::from)
             .ok_or_else(|| "读不到 LOCALAPPDATA，无法保存回眸记录".to_owned())?;
-        Ok(base.join("Free Say").join("transcripts").join("v1"))
+        Ok(base.join("SayAll").join("transcripts").join("v1"))
     }
 
     #[cfg(test)]

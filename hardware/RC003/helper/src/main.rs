@@ -340,7 +340,7 @@ mod imp {
     /// 锁也就永远"已被占用"——把可用性问题和互斥问题绑在一个判据上，两边都会失效。
     /// 名字不加 `Global\` 前缀 = **会话内**命名空间：每个登录会话各允许一支助手，
     /// 与 WUDFHost 的会话维度一致；跨会话互斥会误挡另一个用户的桌面。
-    const SINGLE_INSTANCE_MUTEX: &str = "Free Say.RC003Helper.SingleInstance";
+    const SINGLE_INSTANCE_MUTEX: &str = "SayAll.RC003Helper.SingleInstance";
     /// `CreateMutexW` 的返回值非空且 last error 为它 ⇒ 同名对象已存在（已有实例在跑）。
     const ERROR_ALREADY_EXISTS: u32 = 183;
     const MAX_PATH_W: usize = 260;
@@ -2085,7 +2085,7 @@ mod imp {
 
     fn default_runtime_dir() -> PathBuf {
         let base = std::env::var("ProgramData").unwrap_or_else(|_| "C:\\ProgramData".to_string());
-        PathBuf::from(base).join("Free Say").join("rc003-helper")
+        PathBuf::from(base).join("SayAll").join("rc003-helper")
     }
 
     /// 解析 `--canary-usage` 的取值：十六进制，支持 `0x4A` / `4a` / `74`，逗号分隔多个。
@@ -3803,7 +3803,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
             let home = std::env::var("USERPROFILE").unwrap_or_else(|_| "C:\\".to_string());
             format!("{home}\\AppData\\Local")
         });
-        PathBuf::from(base).join("Free Say").join("rc003-bridge.ini")
+        PathBuf::from(base).join("SayAll").join("rc003-bridge.ini")
     }
 
     /// 「应用正在用的那支遥控器」目标文件（与桥接描述文件同目录，主程序在会话
@@ -3821,7 +3821,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
             let home = std::env::var("USERPROFILE").unwrap_or_else(|_| "C:\\".to_string());
             format!("{home}\\AppData\\Local")
         });
-        PathBuf::from(base).join("Free Say").join("rc003-target.ini")
+        PathBuf::from(base).join("SayAll").join("rc003-target.ini")
     }
 
     /// 读目标地址：先看本账户的 `%LOCALAPPDATA%`，再按 `C:\Users\*` 兜底
@@ -3841,7 +3841,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
                 .path()
                 .join("AppData")
                 .join("Local")
-                .join("Free Say")
+                .join("SayAll")
                 .join("rc003-target.ini");
             if let Some(address) = read(&candidate) {
                 logger.kv(
@@ -3897,7 +3897,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
             format!("{home}\\AppData\\Local")
         });
         PathBuf::from(base)
-            .join("Free Say")
+            .join("SayAll")
             .join("rc003-capture-stop")
     }
 
@@ -3922,7 +3922,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
             format!("{home}\\AppData\\Local")
         });
         PathBuf::from(base)
-            .join("Free Say")
+            .join("SayAll")
             .join("rc003-uninstall-cleanup")
     }
 
@@ -4326,7 +4326,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
                 .path()
                 .join("AppData")
                 .join("Local")
-                .join("Free Say")
+                .join("SayAll")
                 .join("rc003-bridge.ini");
             let Ok(metadata) = fs::metadata(&candidate) else {
                 continue;
@@ -4724,7 +4724,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
     }
 
     fn derived_bridge_pipe_name() -> &'static str {
-        r"\\.\pipe\Free Say.Rc003Bridge"
+        r"\\.\pipe\SayAll.Rc003Bridge"
     }
 
     fn open_named_pipe(pipe: &str) -> std::io::Result<fs::File> {
@@ -9549,7 +9549,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
         // 24) 桥接描述文件解析（捕获链第 ② 段）。解析错一处，现象是
         //     "主程序在跑、助手也在跑，但三键就是不动"——日志上只有 APP-BRIDGE unavailable，
         //     而那是一条折叠日志，本身不会告诉你是哪一项不匹配。逐项钉住。
-        let good = "version=2\nport=53124\npipe=\\\\.\\pipe\\Free Say.Rc003Bridge.999.deadbeef\ntoken=deadbeefcafe\npid=999\n";
+        let good = "version=2\nport=53124\npipe=\\\\.\\pipe\\SayAll.Rc003Bridge.999.deadbeef\ntoken=deadbeefcafe\npid=999\n";
         let parsed = parse_bridge_descriptor(good);
         check(
             "桥接描述文件：正常解析",
@@ -9558,7 +9558,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
                 .map(|t| {
                     t.port == 53124
                         && t.token == "deadbeefcafe"
-                        && t.pipe.as_deref() == Some(r"\\.\pipe\Free Say.Rc003Bridge.999.deadbeef")
+                        && t.pipe.as_deref() == Some(r"\\.\pipe\SayAll.Rc003Bridge.999.deadbeef")
                 })
                 .unwrap_or(false),
             format!(
@@ -9574,7 +9574,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
         // 这是阳性对照：若解析器忽略 version，这条必然 FAIL。
         check(
             "桥接命名管道：固定本机名不依赖可被网络层改写的端口",
-            derived_bridge_pipe_name() == r"\\.\pipe\Free Say.Rc003Bridge",
+            derived_bridge_pipe_name() == r"\\.\pipe\SayAll.Rc003Bridge",
             derived_bridge_pipe_name().to_owned(),
         );
         check(
@@ -9622,7 +9622,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
                 && bridge_joined.contains("\\sayall\\")
                 && bridge_path
                     .parent()
-                    .map(|parent| parent.ends_with("Free Say"))
+                    .map(|parent| parent.ends_with("SayAll"))
                     .unwrap_or(false),
             bridge_path.display().to_string(),
         );
@@ -9889,7 +9889,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
         check(
             "卸载清理标记路径与安装器侧约定一致",
             uninstall_cleanup_signal_path()
-                .ends_with(std::path::Path::new("Free Say").join("rc003-uninstall-cleanup")),
+                .ends_with(std::path::Path::new("SayAll").join("rc003-uninstall-cleanup")),
             format!("{}", uninstall_cleanup_signal_path().display()),
         );
         let cleanup_root = std::env::temp_dir().join(format!(

@@ -752,7 +752,7 @@ fn stop_signal_path() -> std::path::PathBuf {
         format!("{home}\\AppData\\Local")
     });
     std::path::PathBuf::from(base)
-        .join("Free Say")
+        .join("SayAll")
         .join("rc003-capture-stop")
 }
 
@@ -777,7 +777,7 @@ pub fn reauth_marker_path() -> std::path::PathBuf {
         format!("{home}\\AppData\\Local")
     });
     std::path::PathBuf::from(base)
-        .join("Free Say")
+        .join("SayAll")
         .join("rc003-reauth-required")
 }
 
@@ -1011,7 +1011,7 @@ mod tests {
         // 这条路径错一个字符，停用就静默失效（旧助手继续映射）——
         // 2026-09-24 的"开关关了还能映射"正是停止通道不可靠的结果。
         let path = stop_signal_path();
-        assert!(path.ends_with(std::path::Path::new("Free Say").join("rc003-capture-stop")));
+        assert!(path.ends_with(std::path::Path::new("SayAll").join("rc003-capture-stop")));
     }
 
     #[test]
@@ -1020,7 +1020,7 @@ mod tests {
         // （installer-hooks.nsh：$LOCALAPPDATA\SayAll\rc003-reauth-required）。
         // 错一个字符，"升级后需重新授权"就静默失效。
         let path = reauth_marker_path();
-        assert!(path.ends_with(std::path::Path::new("Free Say").join("rc003-reauth-required")));
+        assert!(path.ends_with(std::path::Path::new("SayAll").join("rc003-reauth-required")));
     }
 
     #[test]

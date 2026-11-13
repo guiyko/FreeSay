@@ -125,7 +125,7 @@ fn candidate_lnks(
 /// 图标落盘目录：`%LOCALAPPDATA%\SayAll\icons`（与 rc003 停用信号、日志同根）。
 fn icon_directory() -> Option<PathBuf> {
     let base = std::env::var_os("LOCALAPPDATA")?;
-    Some(PathBuf::from(base).join("Free Say").join("icons"))
+    Some(PathBuf::from(base).join("SayAll").join("icons"))
 }
 
 fn write_icon_files(directory: &Path) -> Result<(), String> {

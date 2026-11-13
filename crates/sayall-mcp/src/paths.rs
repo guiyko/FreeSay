@@ -25,7 +25,7 @@ impl McpPaths {
                 let local = std::env::var_os("LOCALAPPDATA")
                     .filter(|value| !value.is_empty())
                     .ok_or_else(|| "读不到 LOCALAPPDATA，无法定位回眸记录".to_owned())?;
-                PathBuf::from(local).join("Free Say")
+                PathBuf::from(local).join("SayAll")
             }
         };
         let access_root = data_root.join("mcp").join("v1");

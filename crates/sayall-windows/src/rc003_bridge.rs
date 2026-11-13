@@ -430,7 +430,7 @@ pub fn default_bridge_dir() -> PathBuf {
         let home = std::env::var("USERPROFILE").unwrap_or_else(|_| "C:\\".to_string());
         format!("{home}\\AppData\\Local")
     });
-    PathBuf::from(base).join("Free Say")
+    PathBuf::from(base).join("SayAll")
 }
 
 /// 解析结果：一行协议消息。
@@ -649,7 +649,7 @@ fn generate_token() -> String {
 
 #[cfg(windows)]
 fn named_pipe_name() -> &'static str {
-    r"\\.\pipe\Free Say.Rc003Bridge"
+    r"\\.\pipe\SayAll.Rc003Bridge"
 }
 
 /// 跨线程共享的桥接状态。
@@ -2538,7 +2538,7 @@ mod tests {
 
     #[test]
     fn descriptor_body_publishes_optional_pipe_and_log_fields() {
-        let body = descriptor_body(53124, Some(r"\\.\pipe\Free Say.Rc003Bridge"), "tok", None);
+        let body = descriptor_body(53124, Some(r"\\.\pipe\SayAll.Rc003Bridge"), "tok", None);
         assert!(body.starts_with("version=2\nport=53124\n"), "{body:?}");
         assert!(
             body.contains("pipe=\\\\.\\pipe\\Free Say.Rc003Bridge\n"),
@@ -2591,7 +2591,7 @@ mod tests {
         let pipe = text
             .lines()
             .find_map(|line| line.strip_prefix("pipe="))
-            .filter(|line| line.starts_with(r"\\.\pipe\Free Say.Rc003Bridge"))
+            .filter(|line| line.starts_with(r"\\.\pipe\SayAll.Rc003Bridge"))
             .unwrap_or_else(|| {
                 panic!(
                     "计划任务 Helper 的 TCP loopback 会被本机 WFP/TUN 重定向，描述文件必须发布命名管道：{text:?}"
@@ -2696,7 +2696,7 @@ mod tests {
         let pipe = text
             .lines()
             .find_map(|line| line.strip_prefix("pipe="))
-            .filter(|line| line.starts_with(r"\\.\pipe\Free Say.Rc003Bridge"))
+            .filter(|line| line.starts_with(r"\\.\pipe\SayAll.Rc003Bridge"))
             .expect("描述文件必须发布命名管道");
         let deadline = Instant::now() + Duration::from_secs(2);
         let mut stream = loop {

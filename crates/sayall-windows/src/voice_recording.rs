@@ -519,7 +519,7 @@ fn default_root() -> Option<PathBuf> {
     let base = std::env::var_os("LOCALAPPDATA")?;
     Some(
         PathBuf::from(base)
-            .join("Free Say")
+            .join("SayAll")
             .join("transcripts")
             .join("v1")
             .join("audio"),

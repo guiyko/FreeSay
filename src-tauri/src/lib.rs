@@ -5552,7 +5552,7 @@ pub fn run() {
     let log_path = std::env::var_os("LOCALAPPDATA")
         .map(std::path::PathBuf::from)
         .unwrap_or_else(std::env::temp_dir)
-        .join("Free Say")
+        .join("SayAll")
         .join("Logs")
         .join("sayall-diagnostic.log");
     // 版本号唯一来源是 tauri.conf.json 的 `version`（安装包名、exe 版本资源、关于页
@@ -6239,7 +6239,7 @@ pub fn run() {
                 app.path()
                     .app_local_data_dir()
                     .unwrap_or_else(|_| std::env::temp_dir())
-                    .join("Free Say")
+                    .join("SayAll")
                     .join("transcripts")
                     .join("v1")
             });
@@ -6254,7 +6254,7 @@ pub fn run() {
                     app.path()
                         .app_local_data_dir()
                         .unwrap_or_else(|_| std::env::temp_dir())
-                        .join("Free Say")
+                        .join("SayAll")
                         .join("mcp")
                         .join("v1")
                 });
