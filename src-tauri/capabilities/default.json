@@ -13,7 +13,6 @@
       "identifier": "opener:allow-open-url",
       "allow": [
         { "url": "https://vb-audio.com/Cable/" },
-        { "url": "https://freesay.app/?from=win" },
         { "url": "https://github.com/guiyko/freesayall-windows" },
         { "url": "https://vokie.com/" }
       ]

@@ -9,6 +9,11 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 
 const root = path.join(__dirname, "..");
+// 构建产物目录可能与仓库分离（本机用 CARGO_TARGET_DIR 指到 D://sayall-target 绕开路径空格）。
+// 写死 `target/release` 会在这种环境下直接 ENOENT，出包当场失败，所以以环境变量为准。
+const targetRoot = process.env.CARGO_TARGET_DIR
+  ? path.resolve(process.env.CARGO_TARGET_DIR)
+  : path.join(root, "target");
 
 // ── 出包前必须重新构建前端（2026-09-25 血泪教训）──────────────────────
 // 前端产物 `dist/` 只在 vite build 时更新。出包流程若绕过 `tauri build`
@@ -23,7 +28,7 @@ const pairs = [
   ["hardware/RC003/helper/target/release/sayall-helper.exe", "sayall-helper.exe"],
   ["hardware/RC003/helper/vendor/frida-gadget.dll", "frida-gadget.dll"],
   // 回眸「本地 Agent 访问」的只读 MCP 服务：与主程序同目录，配置里写它的绝对路径。
-  ["target/release/sayall-mcp.exe", "sayall-mcp.exe"],
+  [path.join(targetRoot, "release", "sayall-mcp.exe"), "sayall-mcp.exe"],
 ];
 
 // ── arm64 双载荷（可选，2026-10-07 issue206）────────────────────────────
@@ -62,7 +67,7 @@ if (missingArm64.length > 0) {
 }
 
 for (const [src, dst] of pairs.concat(missingArm64.length === 0 ? arm64Pairs : [])) {
-  const from = path.join(root, src);
+  const from = path.isAbsolute(src) ? src : path.join(root, src);
   const to = path.join(root, "src-tauri", dst);
   fs.copyFileSync(from, to);
   console.log("[stage] " + dst + " <- " + src);

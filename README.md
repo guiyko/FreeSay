@@ -1,13 +1,8 @@
 # 自由麦 Free Say for Windows
 
-<p align="center">
-  <img src="Screenshots/sayall-key-mapping.png" alt="自由麦 Free Say Windows 版按键映射界面" width="960">
-</p>
+<p align="center">把蓝牙语音遥控器变成电脑的无线麦克风与快捷键面板</p>
 
-<p align="center">小米蓝牙遥控器的可视化按键映射</p>
-
-[GitHub](https://github.com/guiyko/freesayall-windows) · [官网](https://freesay.app/)
-
+[GitHub](https://github.com/guiyko/freesayall-windows)
 
 自由麦 Free Say Windows 版让小米蓝牙遥控器在电脑上帮你说话、顺手干活：按住遥控器语音键说话，文字直接出现在正在使用的输入框；遥控器按键可以设置成常用快捷键，或用来打开某个应用。
 
@@ -84,10 +79,6 @@
 
 
 首次安装、遥控器配对、语音软件设置、按键映射、更新和排障步骤，见 [安装与配置指南](docs/installation-and-configuration.md)。各版本的更新内容见 [GitHub Releases](https://github.com/guiyko/freesayall-windows/releases)。
-
-<p align="center">
-  <img src="Screenshots/sayall-connection-audio-setup.png" alt="自由麦 Free Say Windows 版连接与语音输入设置界面" width="960">
-</p>
 
 <p align="center">连接遥控器，选择语音设备与输入工具</p>
 

@@ -28,8 +28,8 @@ use tauri_plugin_opener::OpenerExt;
 /// 子 WebView 的固定标签；同一时间只允许一个推荐页实例。
 pub const LABEL: &str = "recommendations";
 /// 用户指定：直接使用官网中文推荐页（英文页留作后续语言切换）。
-const PAGE_URL: &str = "https://freesay.app/recommendations/";
-const ENGLISH_PAGE_URL: &str = "https://freesay.app/en/recommendations/";
+const PAGE_URL: &str = "https://github.com/guiyko/freesayall-windows";
+const ENGLISH_PAGE_URL: &str = "https://github.com/guiyko/freesayall-windows";
 /// 与 `src/styles.css` 的 `.app-shell` 第一列保持一致。
 /// 2026-11-06：按 Mac origin/main 的内容测量口径，当前品牌区自然宽度为
 /// 129 内容 px（15×2 + 44 + 8 + Free Say 16 宽约 46.27，向上取整），侧栏取 130 且不再画右边框。
@@ -345,7 +345,7 @@ fn is_allowed_navigation(url: &Url) -> bool {
     if url.as_str() == "about:blank" {
         return true;
     }
-    if url.scheme() != "https" || url.host_str() != Some("freesay.app") {
+    if url.scheme() != "https" || url.host_str() != Some("github.com") {
         return false;
     }
     // 带用户信息/密码的地址不进入 App 内嵌视图。

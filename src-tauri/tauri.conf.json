@@ -33,7 +33,7 @@
     "targets": [
       "nsis"
     ],
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "publisher": "guiyko",
     "category": "Productivity",
     "shortDescription": "把 RC001/RC003 遥控器的语音和按键桥接到 Windows",
@@ -69,11 +69,11 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDcyRUY0RDUwOEQ1ODAyNDgKUldSSUFsaU5VRTN2Y3ZleWlGT3AzSHpNZk5ka09TZFZRUHRsci9BVXJacmU0QTljSElnd0RydTQK",
       "endpoints": [],
       "windows": {
         "installMode": "passive"
-      }
+      },
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDcyRUY0RDUwOEQ1ODAyNDgKUldSSUFsaU5VRTN2Y3ZleWlGT3AzSHpNZk5ka09TZFZRUHRsci9BVXJacmU0QTljSElnd0RydTQK"
     }
   }
 }

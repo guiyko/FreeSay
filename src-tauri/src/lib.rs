@@ -1036,11 +1036,11 @@ async fn open_membership_checkout(
 async fn open_membership_link(app: tauri::AppHandle, link: String) -> Result<(), String> {
     use tauri_plugin_opener::OpenerExt;
     let url = match link.as_str() {
-        "agreement" => "https://getsayall.com/terms/",
-        "privacy" => "https://getsayall.com/privacy/",
-        "refund" => "https://getsayall.com/refund/",
+        "agreement" => "https://github.com/guiyko/freesayall-windows",
+        "privacy" => "https://github.com/guiyko/freesayall-windows",
+        "refund" => "https://github.com/guiyko/freesayall-windows",
         // 大版本说明有独立页面（与 Mac 的「大版本说明」同源）。
-        "version" => "https://getsayall.com/plus-version/",
+        "version" => "https://github.com/guiyko/freesayall-windows",
         // 键位方案市场使用公开 GitHub 仓库，与 Mac 共用同一入口。
         "market" => "https://github.com/guiyko/sayall-market",
         _ => return Err("unknown_membership_link".to_string()),

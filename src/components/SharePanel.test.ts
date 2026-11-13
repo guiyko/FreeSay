@@ -21,24 +21,22 @@ afterEach(() => {
 });
 
 describe("分享自由麦面板", () => {
-  it("默认收起，点击后才在原页面展开二维码", async () => {
+  it("默认收起，点击后才在原页面展开分享链接", async () => {
     stubClipboard();
     const wrapper = mount(SharePanel);
 
     expect(wrapper.get("#profile-share-title").text()).toBe("分享自由麦 Free Say");
-    expect(wrapper.get(".share-toggle").text()).toContain("显示二维码");
-    expect(wrapper.find(".share-qr").exists()).toBe(false);
+    expect(wrapper.get(".share-toggle").text()).toContain("分享链接");
 
     await wrapper.get(".share-toggle").trigger("click");
 
     expect(wrapper.get(".share-toggle").attributes("aria-expanded")).toBe("true");
     expect(wrapper.get(".share-toggle").text()).toContain("收起");
-    expect(wrapper.get(".share-qr img").attributes("src")).toBe("/app-share-qr.png");
     expect(wrapper.get(".share-copy code").text()).toBe(SHARE_WEBSITE_URL);
     wrapper.unmount();
   });
 
-  it("复制链接使用二维码中的同一个地址并显示成功", async () => {
+  it("复制链接使用同一个地址并显示成功", async () => {
     const writeText = stubClipboard();
     const wrapper = mount(SharePanel);
     await wrapper.get(".share-toggle").trigger("click");
@@ -46,7 +44,7 @@ describe("分享自由麦面板", () => {
     await wrapper.get(".share-copy-button").trigger("click");
     await wrapper.vm.$nextTick();
 
-    expect(writeText).toHaveBeenCalledWith("https://freesay.app/?from=win_share");
+    expect(writeText).toHaveBeenCalledWith("https://github.com/guiyko/freesayall-windows");
     expect(wrapper.get(".share-copy-result").text()).toBe("链接已复制");
     expect(wrapper.get(".share-copy-result").classes()).toContain("success");
     wrapper.unmount();

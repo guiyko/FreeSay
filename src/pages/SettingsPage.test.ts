@@ -471,7 +471,7 @@ describe("settings page", () => {
     await flushPromises();
 
     expect(open.mock.calls.map(([url]) => url)).toEqual([
-      "https://freesay.app/?from=win",
+      "https://github.com/guiyko/freesayall-windows",
       "https://github.com/guiyko/freesayall-windows",
     ]);
     // 2026-10-02 用户指定：成功不再显示“已在系统默认浏览器打开…”这类提示。
@@ -483,7 +483,7 @@ describe("settings page", () => {
     const open = vi
       .spyOn(window, "open")
       .mockImplementation(() => {
-        throw new Error("Not allowed to open url https://freesay.app/?from=win");
+        throw new Error("Not allowed to open url https://github.com/guiyko/freesayall-windows");
       });
     const wrapper = mount(SettingsPage, { props: { runtime } });
     await flushPromises();

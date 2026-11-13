@@ -27,7 +27,7 @@
 | Windows 应用切换器（按键页「系统与媒体」） | 「切换应用」；卡片显示 `Alt + Tab`；悬停提示「切换应用：用左、右键选择，按“确定”确认，返回取消」。会话内方向键 / 确定 / 返回只操作系统切换器，15 秒无操作自动取消（对齐 Mac `Command+Tab` 临时会话，平台动作换成 Alt+Tab）；旧的一次性 `Alt+Tab` 绑定保留可执行。按键页、组合动作页与键位方案的预设芯片统一只显示按键组合，功能描述只作悬停提示；`Win + D`/`Win + L`/`Win + S`/`Win + Shift + S` 保存后摘要也显示 `Win`，不显示「左 Win」或「右 Win」。组合动作里的 `Alt + Tab` 也启动应用切换器会话（运行时按 Alt+Tab 识别）；键位方案复用共享清单的 `app_switcher` 动作。组合动作步骤在会话启动后立即完成，建议把 `Alt + Tab` 放在最后一步，避免后续步骤在切换器打开时继续发送按键 | `src/lib/shortcut-presets.ts`、`ButtonsPage.vue`、`MacrosPage.vue`、`src/lib/bridge.ts`（`actionSummary`）、`sayall-windows::app_switcher` |
 | 虚拟声卡端点 | CABLE Input / CABLE Output（经典 2 通道驱动）；CABLE In 16 Ch（3.3.1.7 起的新版 16 通道驱动，渲染端） | VB-Audio 官方名称；界面文案只说“选择带『推荐』标记的 CABLE 设备”，不硬编码单独一个名字（2026-10-02 现场教训） |
 | 第三方语音工具 Vokie | Vokie；官网 vokie.com；说明文案“流式显示，智能整理，不占用输入法”（Vokie 官方口径，原样引用） | `VOKIE_HOMEPAGE_URL`（`src/lib/bridge.ts`）、`ConnectionPage.vue` |
-| 推荐页（侧栏，2026-10-18） | 侧栏与页面标题统一为「推荐」；英文为 Picks（对齐 Mac 补充页标题）。页面正文、筛选项、商品名与详情全部来自官网 `https://freesay.app/recommendations/`，不在本地维护推荐文案。英文设置下使用 `/en/recommendations/` 与 Mac 同款英文固定文案（Picks / Loading page… / This page is temporarily unavailable. Open the website or try again later. / Open website / Retry / Back） | `src/navigation.ts`、`RecommendationsPage.vue`、`RECOMMENDATIONS_URL` |
+| 推荐页（侧栏，2026-10-18） | 侧栏与页面标题统一为「推荐」；英文为 Picks（对齐 Mac 补充页标题）。页面正文、筛选项、商品名与详情全部来自官网 项目主页（本项目无官网），不在本地维护推荐文案。英文设置下使用 （同上） 与 Mac 同款英文固定文案（Picks / Loading page… / This page is temporarily unavailable. Open the website or try again later. / Open website / Retry / Back） | `src/navigation.ts`、`RecommendationsPage.vue`、`RECOMMENDATIONS_URL` |
 | 侧栏末位页（原「关于」） | 设置 | `src/navigation.ts`、`SettingsPage.vue` |
 | 应用图标（设置页可切换） | 应用图标；两个选项写“默认”“几何鸭”（对齐 Mac `about.preferences.app_icon*`）；新装默认选中「几何鸭」（2026-10-04 用户定稿） | `SettingsPage.vue`、`AppSettings.app_icon` |
 | 语音音量（连接页「语音设备」卡） | 增益；读数写“12 dB”；说明“0 dB 保持原始音量；数值越大声音越响，也会放大环境噪声。建议先从 6–12 dB 开始。”（对齐 Mac `audio.gain.*`） | `ConnectionPage.vue`、`AppSettings.gain_db` |
@@ -167,7 +167,7 @@ ATVV、GATT / BLE / 无线电、内核 / 驱动、进程 / 端口 / 边沿、会
 - 2026-10-01：连接页改版与全应用去术语化（豆包/F5/结构性泄漏等）、型号名统一 ——
   见 [TODO.md](../TODO.md) 与 PR #151、#153。
 - 2026-10-02：「关于」改名「设置」并按 Mac 新设置页重排（顶部标识 + 版本 + 检查更新，
-  「通用」「问题反馈」两个分组）；官网入口地址改为 `https://freesay.app/?from=win`；
+  「通用」「问题反馈」两个分组）；官网入口地址改为 `https://github.com/guiyko/freesayall-windows`；
   侧栏底部改显示版本号；新增「应用图标」切换（默认 / 几何鸭，窗口 + 托盘 + 设置页
   顶部一起换）。同日按用户指正删掉三处说明文字（预览通道说明、外观的“该选择会在
   重启后保持”、外部入口的成功提示）与 Mac 菜单栏状态图标（Windows 没有该图标）。
@@ -644,7 +644,7 @@ ATVV、GATT / BLE / 无线电、内核 / 驱动、进程 / 端口 / 边沿、会
   使用 Mac 的 system green）。
   页面顶部、累计按键上方固定显示「分享自由麦 Free Say」面板，默认收起；点「显示二维码」后在
   原页面展开，点「收起」恢复。展开内容：二维码与复制按钮使用同一个本机链接
-  `https://freesay.app/?from=win_share`；说明为「邀请朋友发现用遥控器或手机在 Windows 上进行
+  `https://github.com/guiyko/freesayall-windows`；说明为「邀请朋友发现用遥控器或手机在 Windows 上进行
   语音输入的便捷方式。」，卡片标题「扫码或复制链接」，说明「可用手机扫描二维码，也可复制
   同一个官网链接。」，按钮「复制链接」，结果「链接已复制」/「链接复制失败」；二维码在本机
   静态生成，不请求二维码服务。侧栏不提供「分享」入口。

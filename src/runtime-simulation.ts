@@ -613,7 +613,7 @@ async function runJourney(steps: string[]): Promise<PlatformSnapshot> {
   );
   const shareLink = document.querySelector(".share-copy code")?.textContent?.trim();
   assert(
-    shareLink === "https://freesay.app/?from=win_share",
+    shareLink === "https://github.com/guiyko/freesayall-windows",
     `分享链接异常：${shareLink ?? "missing"}`,
   );
   assert(

@@ -16,7 +16,8 @@ export const VB_CABLE_DOWNLOAD_URL = "https://vb-audio.com/Cable/";
  * （`bridge.test.ts` 逐字锁定了这份契约，runtime simulation 另行断言不在真机
  * 上被拒绝）。
  */
-export const OFFICIAL_WEBSITE_URL = "https://freesay.app/?from=win";
+// 本项目没有独立官网，官方入口就是 GitHub 仓库（2026-11-13 用户确认）。
+export const OFFICIAL_WEBSITE_URL = "https://github.com/guiyko/freesayall-windows";
 export const GITHUB_REPOSITORY_URL = "https://github.com/guiyko/freesayall-windows";
 
 /**
@@ -25,7 +26,7 @@ export const GITHUB_REPOSITORY_URL = "https://github.com/guiyko/freesayall-windo
  * 修改此值必须重新生成 `public/app-share-qr.png`：
  * `corepack pnpm dlx qrcode -o public/app-share-qr.png -w 288 -q 2 -e M "<URL>"`
  */
-export const SHARE_WEBSITE_URL = "https://freesay.app/?from=win_share";
+export const SHARE_WEBSITE_URL = "https://github.com/guiyko/freesayall-windows";
 
 /**
  * Vokie 官网（2026-10-01 Andy 提供）。
@@ -40,7 +41,7 @@ export const VOKIE_HOMEPAGE_URL = "https://vokie.com/";
  * 官网 `/recommendations/` 设置 `X-Frame-Options: DENY`，因此页面由 Tauri
  * 子 WebView 承载；这里只保留「打开官网」兜底所用的公开地址。
  */
-export const RECOMMENDATIONS_URL = "https://freesay.app/recommendations/";
+export const RECOMMENDATIONS_URL = "https://github.com/guiyko/freesayall-windows";
 
 export type RecommendationsPageStatus = "loading" | "ready" | "failed";
 
@@ -1252,7 +1253,7 @@ export async function openRecommendationsWebsite(
   if (!isTauriRuntime()) {
     const url =
       language === "en"
-        ? "https://freesay.app/en/recommendations/"
+        ? "https://github.com/guiyko/freesayall-windows"
         : RECOMMENDATIONS_URL;
     window.open(url, "_blank", "noopener,noreferrer");
     return;
@@ -1663,7 +1664,6 @@ export async function listPresetApps(): Promise<PresetAppInfo[]> {
       { id: "chrome", name: "Chrome 浏览器", installed: true },
       { id: "chatgpt", name: "ChatGPT", installed: true },
       { id: "workbuddy", name: "WorkBuddy", installed: true },
-      { id: "dimagent", name: "DimAgent", installed: true },
       { id: "vokie", name: "Vokie", installed: true },
       { id: "notepad", name: "记事本", installed: true },
       { id: "qq", name: "QQ", installed: true },

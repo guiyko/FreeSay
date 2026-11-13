@@ -54,7 +54,7 @@ describe("sharing and app icon sync", () => {
   });
 
   it("uses the same fixed share URL encoded in the QR asset", () => {
-    expect(SHARE_WEBSITE_URL).toBe("https://freesay.app/?from=win_share");
+    expect(SHARE_WEBSITE_URL).toBe("https://github.com/guiyko/freesayall-windows");
   });
 
   it("notifies the shell immediately after the app icon is applied", async () => {
@@ -414,7 +414,7 @@ describe("设置页外部入口（官网 / GitHub）", () => {
 
   it("指向已确认的官网与 Windows 仓库地址", () => {
     // 2026-10-02 用户指定：官网入口带 `?from=win` 来源标记，便于官网区分来客。
-    expect(OFFICIAL_WEBSITE_URL).toBe("https://freesay.app/?from=win");
+    expect(OFFICIAL_WEBSITE_URL).toBe("https://github.com/guiyko/freesayall-windows");
     expect(GITHUB_REPOSITORY_URL).toBe("https://github.com/guiyko/freesayall-windows");
   });
 
@@ -454,7 +454,7 @@ describe("推荐页入口（官网页面宿主）", () => {
   });
 
   it("只指向官网推荐页，不在客户端保存推荐内容", () => {
-    expect(RECOMMENDATIONS_URL).toBe("https://freesay.app/recommendations/");
+    expect(RECOMMENDATIONS_URL).toBe("https://github.com/guiyko/freesayall-windows");
   });
 
   it("浏览器预览下明确不可用，并可直接打开官网", async () => {
@@ -519,7 +519,7 @@ describe("推荐页入口（官网页面宿主）", () => {
     const open = vi.spyOn(window, "open").mockImplementation(() => null);
     await openRecommendationsWebsite("en");
     expect(open).toHaveBeenCalledWith(
-      "https://freesay.app/en/recommendations/",
+      "https://github.com/guiyko/freesayall-windows",
       "_blank",
       "noopener,noreferrer",
     );

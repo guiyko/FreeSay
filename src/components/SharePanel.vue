@@ -65,19 +65,16 @@ async function copyLink(): Promise<void> {
             stroke-linejoin="round"
           />
         </svg>
-        <span>{{ expanded ? "收起" : "显示二维码" }}</span>
+        <span>{{ expanded ? "收起" : "分享链接" }}</span>
       </button>
     </header>
 
     <div v-if="expanded" id="profile-share-content" class="share-panel-content">
       <div class="share-divider"></div>
       <div class="share-card">
-        <div class="share-qr">
-          <img src="/app-share-qr.png" alt="Free Say 官网二维码" />
-        </div>
         <div class="share-copy">
-          <h3>扫码或复制链接</h3>
-          <p>可用手机扫描二维码，也可复制同一个官网链接。</p>
+          <h3>复制链接</h3>
+          <p>复制下面的项目地址分享给朋友。</p>
           <code>{{ SHARE_WEBSITE_URL }}</code>
           <button type="button" class="primary-button share-copy-button" @click="copyLink">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

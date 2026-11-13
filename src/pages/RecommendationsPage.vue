@@ -17,7 +17,7 @@ import type { EffectiveLanguage } from "../lib/bridge";
 
 /**
  * 推荐页只做官网页面宿主：
- * - 页面内容、筛选、详情、排序全部来自 https://freesay.app/recommendations/；
+ * - 页面内容、筛选、详情、排序全部来自 项目主页；
  * - 加载/失败状态由 Vue 提供（子 WebView 加载成功前隐藏，失败后也保持隐藏）；
  * - 浏览器预览没有子 WebView，给出明确说明和官网入口，不伪造推荐内容。
  */
@@ -49,7 +49,7 @@ const COPY = {
     retry: "重试",
     back: "返回上一页",
     browserPreview: "浏览器预览中无法内嵌官网推荐页面，请前往官网查看。",
-    openFailed: "无法打开浏览器，请手动访问 freesay.app/recommendations/。",
+    openFailed: "无法打开浏览器，请手动访问 项目主页。",
   },
   en: {
     title: "Picks",
@@ -62,7 +62,7 @@ const COPY = {
     browserPreview:
       "The website cannot be embedded in the browser preview. Open the website instead.",
     openFailed:
-      "Unable to open the browser. Please visit freesay.app/en/recommendations/ manually.",
+      "Unable to open the browser. Please visit 项目主页 manually.",
   },
 } as const;
 
