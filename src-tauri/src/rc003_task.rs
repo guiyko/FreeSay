@@ -20,7 +20,7 @@
 //! 表现为「打开开关 → 授权通过 → 却提示拒绝访问」；助手侧已加遗留任务清理。
 
 /// 与助手侧 `SCHEDULED_TASK_NAME` 必须逐字符一致。
-pub const SCHEDULED_TASK_NAME: &str = "Free Say RC003 Helper";
+pub const SCHEDULED_TASK_NAME: &str = "Free SayAll RC003 Helper";
 
 /// 开关状态。`installed` = 任务在系统里（**不等于**授权有效：任务可能在，
 /// 但指向的是别的助手，那种情况仍需重新授权）；
@@ -993,7 +993,7 @@ mod tests {
     fn task_name_matches_helper_side() {
         // 与助手侧的常量逐字符一致。助手 --selftest 钉住它那一边，
         // 这里钉住这一边；两边任何一个改名而另一个没跟上，这条就会红。
-        assert_eq!(SCHEDULED_TASK_NAME, "Free Say RC003 Helper");
+        assert_eq!(SCHEDULED_TASK_NAME, "Free SayAll RC003 Helper");
     }
 
     #[test]

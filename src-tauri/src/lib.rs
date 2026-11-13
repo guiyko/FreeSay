@@ -5497,9 +5497,12 @@ fn spawn_second_instance_listener(app: tauri::AppHandle) {
 /// 旧目录原样保留，用户想回退旧版也不受影响。
 fn migrate_legacy_config_if_needed(app: &tauri::App) {
     const LEGACY_DIR: &str = "app.getsayall.remote-mic.windows";
-    const FILES: [&str; 8] = [
+    // 漏掉任何一个都会让用户看到"配置没了"：combined-actions.json 存的是组合动作，
+    // 少了它音量 / 返回键的映射会整批不生效（2026-11-13 首次安装现场）。
+    const FILES: [&str; 9] = [
         "settings.json",
         "button-mappings.json",
+        "combined-actions.json",
         "voice-hold-hotkey.json",
         "other-voice-hotkey.json",
         "custom-remotes.json",
@@ -5510,10 +5513,12 @@ fn migrate_legacy_config_if_needed(app: &tauri::App) {
     let Ok(new_dir) = app.path().app_config_dir() else {
         return;
     };
-    // 新目录已经有配置 = 用户已经在新版里用过，绝不能再拿旧文件覆盖。
-    if new_dir.join("settings.json").exists() {
-        return;
-    }
+    // **逐文件补齐，而不是"新目录有 settings.json 就整体跳过"。**
+    //
+    // 整体跳过有个致命缺点：首轮迁移只要漏了一个文件，之后再重装也永远补不回来
+    // （2026-11-13 现场：combined-actions.json 漏迁，音量 / 返回键映射整批失效，
+    // 用户重装后依旧缺失）。改成"新目录没有该文件才复制"，既能把漏的补上，
+    // 也绝不会覆盖用户在新版里已经改过的配置。
     let Some(roaming) = std::env::var_os("APPDATA") else {
         return;
     };
@@ -5526,14 +5531,20 @@ fn migrate_legacy_config_if_needed(app: &tauri::App) {
     }
     let mut copied = 0usize;
     for name in FILES {
+        let dest = new_dir.join(name);
+        if dest.exists() {
+            continue;
+        }
         let source = legacy_dir.join(name);
-        if source.is_file() && std::fs::copy(&source, new_dir.join(name)).is_ok() {
+        if source.is_file() && std::fs::copy(&source, &dest).is_ok() {
             copied += 1;
         }
     }
+    if copied == 0 {
+        return;
+    }
     sayall_windows::gatt_note(format!(
-        "config_migration action=copy phase=completed terminal_result={} from={LEGACY_DIR} files={copied} note=与原项目版本分开后的首次启动，搬运既有配置",
-        if copied > 0 { "passed" } else { "skipped" }
+        "config_migration action=copy phase=completed terminal_result=passed from={LEGACY_DIR} files={copied} note=逐文件补齐缺失配置"
     ));
 }
 

@@ -77,4 +77,7 @@ export default {
   "添加所选": "Add Selected",
   "（{count}）": " ({count})",
   "分享自由麦 Free Say": "Share Free Say",
+  "以下内容随应用提供，不联网加载，也不访问任何网站。":
+    "The content below ships with the app. It does not load from the network or visit any website.",
+  "打开官网": "Open website",
 } as Record<string, string>;

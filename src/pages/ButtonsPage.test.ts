@@ -699,14 +699,13 @@ describe("buttons mapping page", () => {
       .findAll(".mapping-editor .action-section")
       .find((item) => item.find(".action-section-title").text() === "打开应用")!;
     const labels = appSection.findAll("button.chip").map((button) => button.text());
-    expect(labels.slice(0, 10)).toEqual([
+    expect(labels.slice(0, 9)).toEqual([
       "打开自由麦 Free Say",
       "打开微信",
       "打开网易云音乐",
       "打开 Chrome 浏览器",
       "打开 ChatGPT",
       "打开 WorkBuddy",
-      "打开 DimAgent",
       "打开 Vokie",
       "打开记事本",
       "打开 QQ",

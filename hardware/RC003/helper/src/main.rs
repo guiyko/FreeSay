@@ -5267,7 +5267,7 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
 
     /// 计划任务名。主程序靠它触发助手，所以**改名必须与主程序侧同步**
     /// （两边各有一份常量，靠自检核对字符串、靠联调核对行为）。
-    const SCHEDULED_TASK_NAME: &str = "Free Say RC003 Helper";
+    const SCHEDULED_TASK_NAME: &str = "Free SayAll RC003 Helper";
 
     /// 改名前的任务名。2026-11-12 全仓改名（SayAll → Free Say）时只改了源码，
     /// 旧助手二进制（11-11 构建）仍按旧名注册成功，于是系统里留下一个指向旧路径的
