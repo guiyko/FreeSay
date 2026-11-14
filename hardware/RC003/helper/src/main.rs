@@ -7033,6 +7033,54 @@ Raw Input 与键盘钩子同样拿不到它们（那正是 kbdhid 丢弃的直�
         });
         let _ = retarget_handle;
 
+        // ---- 主程序消失看门狗（2026-11-14 现场）----
+        //
+        // 为什么必须有：`--follow-app` 的自退判定挂在**主循环**里
+        // （`idle_ms > FOLLOW_APP_GRACE_MS`）。一旦主循环卡死，那段判定就永远走不到——
+        // 实测形状：桥接重连时 `pipe_connect_failed`，此后 `[RENEW]` 与心跳全停，
+        // 进程却活着，键盘钩子也还挂着，把用户的按键一直吞掉。
+        // 现场表现：应用关掉后 Ctrl 按下去没反应，只能手动结束进程。
+        //
+        // 判据用「续约计数是否增长」：只要桥连着，每 500 ms 成功续约一次；桥断了就不再增长。
+        // 连续 60 秒零续约 = 主程序已不在（或本进程已卡死），直接退出。
+        // `process::exit` 会让系统回收本进程的键盘钩子，不会留下粘滞键。
+        if args.follow_app {
+            let wd_counter = Arc::clone(&renew_count);
+            let wd_stop = Arc::clone(&stop);
+            let wd_logger = Logger::with_shared(args.log.clone(), shared_log.clone());
+            std::thread::spawn(move || {
+                const WD_POLL_MS: u64 = 5_000;
+                const WD_IDLE_LIMIT_MS: u64 = 60_000;
+                let mut last = wd_counter.load(Ordering::Relaxed);
+                let mut idle_ms: u64 = 0;
+                while !wd_stop.load(Ordering::Relaxed) {
+                    std::thread::sleep(Duration::from_millis(WD_POLL_MS));
+                    let now = wd_counter.load(Ordering::Relaxed);
+                    if now != last {
+                        last = now;
+                        idle_ms = 0;
+                        continue;
+                    }
+                    idle_ms += WD_POLL_MS;
+                    if idle_ms >= WD_IDLE_LIMIT_MS {
+                        wd_logger.kv(
+                            "[FOLLOW-APP]",
+                            &[
+                                ("event", "exit".into()),
+                                ("reason", "no_renew".into()),
+                                ("idle_ms", idle_ms.to_string()),
+                                (
+                                    "note",
+                                    "主程序已不在或本进程已卡死；退出以免继续 hook 键盘".into(),
+                                ),
+                            ],
+                        );
+                        std::process::exit(0);
+                    }
+                }
+            });
+        }
+
         logger.line("");
         logger.line(
             "已武装。主程序会动态下发已配置按键；[CONFIG] / [HB] 的 report_usages 是当前实际目标。",

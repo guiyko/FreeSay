@@ -3112,9 +3112,12 @@ fn spawn_synth_release_guard(
                 return;
             }
             let mask = crate::key_suppressor::modifier_mask_in_os();
-            let result = send_input.release(&chord);
+            let result = release_with_verify(&send_input, &chord, reason);
             gatt_note(format!(
-                "synth_release_guard reason={reason} action=release keys={keys} os_mods_seen={mask} terminal_result={}",
+                "synth_release_guard reason={reason} action=release keys={keys} os_mods_seen={mask} os_mods_after={} terminal_result={}",
+                crate::key_suppressor::modifier_mask_label(
+                    crate::key_suppressor::modifier_mask_in_os()
+                ),
                 if result.is_ok() { "passed" } else { "failed" }
             ));
         });
@@ -3273,6 +3276,45 @@ fn remember_synth_held_chord(chord: Option<KeyChord>) {
     *lock(&SYNTH_HELD_CHORD) = chord;
 }
 
+/// 发 UP 并**校验键态真的归零**，没归零就重试（2026-11-14 现场）。
+///
+/// 为什么必须校验：`SendInput` 返回 Ok 只代表调用被系统接受，不代表键态已清。
+/// 输入法在录音态会挂键盘钩子，可能吞掉注入的 UP —— 实测形状是松手后 Ctrl 留在
+/// 按下态，下一次按下时 `os_mods_before=lc`，之后所有组合键、鼠标侧键映射、
+/// 输入法「设置快捷键」界面全部失效，用户只能重启。
+///
+/// 重试代价只在异常路径发生：正常情况第一次就 `mask == 0` 立刻返回，
+/// 每轮 50 ms 的等待总共不到 150 ms，且都发生在会话收尾之后。
+fn release_with_verify(
+    send_input: &SendInputRuntime,
+    chord: &KeyChord,
+    reason: &'static str,
+) -> Result<crate::send_input::SendInputSnapshot, PlatformError> {
+    let mut last = send_input.release(chord);
+    std::thread::sleep(Duration::from_millis(50));
+    let mut mask = crate::key_suppressor::modifier_mask_in_os();
+    let mut attempt = 0u8;
+    while mask != 0 && attempt < 2 {
+        attempt += 1;
+        if attempt == 1 {
+            gatt_note(format!(
+                "chord_release_retry reason={reason} os_mods_after={}",
+                crate::key_suppressor::modifier_mask_label(mask)
+            ));
+        }
+        last = send_input.release(chord);
+        std::thread::sleep(Duration::from_millis(50));
+        mask = crate::key_suppressor::modifier_mask_in_os();
+    }
+    if mask != 0 {
+        gatt_note(format!(
+            "chord_release_stuck reason={reason} os_mods_after={} note=连发 3 次 UP 仍未清掉，修饰键可能被键盘钩子吞掉",
+            crate::key_suppressor::modifier_mask_label(mask)
+        ));
+    }
+    last
+}
+
 /// 异常收尾时同步补发合成键的 UP 边沿。
 ///
 /// 与 `spawn_synth_release_guard` 同理：**不看 OS 键态**。设备断开时 Windows 会把
@@ -3283,10 +3325,14 @@ fn release_synth_residue(send_input: &SendInputRuntime, reason: &'static str) {
         return;
     };
     let mask = crate::key_suppressor::modifier_mask_in_os();
-    let result = send_input.release(&chord);
+    // 走校验版：合成路径的 UP 只发一次时，可能被输入法的键盘钩子吞掉，
+    // 留下 Ctrl 卡在按下态（`os_mods_seen` 只能看到发送前的状态，看不出这件事）。
+    let result = release_with_verify(send_input, &chord, reason);
+    let after = crate::key_suppressor::modifier_mask_in_os();
     gatt_note(format!(
-        "chord_release reason={reason} result={} os_mods_seen={mask} keys={} terminal_result={}",
+        "chord_release reason={reason} result={} os_mods_seen={mask} os_mods_after={} keys={} terminal_result={}",
         if result.is_ok() { "ok" } else { "err" },
+        crate::key_suppressor::modifier_mask_label(after),
         chord
             .keys
             .iter()
