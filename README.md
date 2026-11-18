@@ -18,6 +18,8 @@
 <a href="https://github.com/guiyko/FreeSay/releases">更新记录</a>
 </p>
 
+> **当前状态：v1.1.7 · 保持现状，短期无更新计划。** 版本、安装包、构建方式与文档索引见 [docs/PROJECT-STATUS.md](docs/PROJECT-STATUS.md)。
+
 ---
 
 ## 项目介绍
