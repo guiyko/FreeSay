@@ -1,0 +1,59 @@
+<script setup lang="ts">
+/**
+ * 第①步：首次配对说明（2026-10-13 现场定稿文案）。
+ * 「打开蓝牙设置」入口放在第 2 条下方（Andy 指定位置）：点击只唤起系统设置页，
+ * 不写"已打开…"提示（由父级 `openBluetoothSettingsFromWelcome` 保证）。
+ */
+import { t } from "../../lib/i18n";
+
+defineEmits<{ openBluetoothSettings: [] }>();
+</script>
+
+<template>
+  <section class="onboarding-step">
+    <h1>{{ t("欢迎使用自由麦 FreeSay") }}</h1>
+    <p class="onboarding-lede">
+      {{ t("接下来会完成真实的设置和验证，不是走一遍页面教程。每一步都确认可用后才会放行。") }}
+    </p>
+
+    <div class="onboarding-card accent">
+      <h4>{{ t("首次使用：遥控器怎么连电脑") }}</h4>
+      <ul class="onboarding-numlist">
+        <li>
+          <span class="onboarding-num">1</span>
+          <span>{{ t("准备好一支蓝牙语音遥控器（小米蓝牙语音遥控器 2 / 2 Pro，或其它提供 ATVV 语音服务的型号），并确保它有电。") }}</span>
+        </li>
+        <li>
+          <span class="onboarding-num">2</span>
+          <span>
+            {{ t("在电脑上打开蓝牙设置（可直接点击下方按钮），打开电脑的蓝牙开关后点击「添加设备」然后选择「蓝牙」选项。") }}
+          </span>
+        </li>
+        <li class="onboarding-numlist-action">
+          <button class="onboarding-chip" type="button" @click="$emit('openBluetoothSettings')">
+            {{ t("打开蓝牙设置") }}
+          </button>
+        </li>
+        <li>
+          <span class="onboarding-num">3</span>
+          <span>
+            {{ t("让遥控器进入配对模式：小米 2 / 2 Pro 长按「TV」键约 3 秒至指示灯闪烁；其它型号按各自说明书操作（通常是长按某个组合键）。") }}
+          </span>
+        </li>
+        <li>
+          <span class="onboarding-num">4</span>
+          <span>
+            {{ t("同时长按「主页」+「菜单」直到指示灯快速闪烁——重置遥控器的蓝牙并重新进入配对模式。") }}
+          </span>
+        </li>
+        <li>
+          <span class="onboarding-num">5</span>
+          <span>
+            {{ t("选中「小米蓝牙语音遥控器」，等待配对完成，列表里找不到设备时，打开高级设置或者点开「显示所有设备」。") }}
+          </span>
+        </li>
+      </ul>
+      <p>{{ t("配对失败，或遥控器以前配对过别的设备：回到第 4 步重置蓝牙后重新配对。") }}</p>
+    </div>
+  </section>
+</template>

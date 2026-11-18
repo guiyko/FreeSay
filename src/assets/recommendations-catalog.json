@@ -1,0 +1,495 @@
+{
+  "categories": [
+    {
+      "id": "remotes",
+      "title": {
+        "zh-Hans": "硬件",
+        "en": "Hardware"
+      }
+    },
+    {
+      "id": "software",
+      "title": {
+        "zh-Hans": "软件",
+        "en": "Software"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "remotes",
+      "categoryId": "remotes",
+      "layout": "remote_grid",
+      "title": {
+        "zh-Hans": "推荐硬件",
+        "en": "Recommended hardware"
+      },
+      "itemIds": [
+        "xiaomi-2",
+        "xiaomi-2-pro",
+        "siri-a2540",
+        "siri-a2854"
+      ]
+    },
+    {
+      "id": "software",
+      "categoryId": "software",
+      "layout": "software",
+      "title": {
+        "zh-Hans": "搭配软件",
+        "en": "Companion software"
+      },
+      "itemIds": [
+        "vokie",
+        "doubao",
+        "wetype",
+        "chatterfly"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "xiaomi-2",
+      "slug": "xiaomi-2",
+      "kind": "hardware",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "ios",
+        "miniapp",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "小米蓝牙遥控器 2",
+        "en": "Xiaomi Bluetooth Remote 2"
+      },
+      "summary": {
+        "zh-Hans": "了解这款遥控器的连接方式与按键布局。",
+        "en": "Explore the connection and button layout."
+      },
+      "reason": {
+        "zh-Hans": "配合语音软件支持语音输入，按住说话、松开结束。\n支持按键自定义，组合动作和键位方案。\n支持 Mac 和 Windows。",
+        "en": "Works with voice software for voice input: hold to talk and release to stop.\nCustomize buttons, combined actions and key layouts.\nSupports Mac and Windows."
+      },
+      "compatibility": {
+        "zh-Hans": "以当前 App 的设备支持状态为准",
+        "en": "Check support in your current app version"
+      },
+      "platforms": [
+        "mac"
+      ],
+      "image": {
+        "url": "/recommendations/remote-rc001-39c0c793f8b5.png",
+        "alt": {
+          "zh-Hans": "小米蓝牙遥控器 2",
+          "en": "Xiaomi Bluetooth Remote 2"
+        }
+      },
+      "paragraphs": [
+        {
+          "zh-Hans": "具体按键、语音和触摸能力以该型号的支持说明为准；不能以另一款设备的能力代替。",
+          "en": "Button, voice and touch capabilities depend on the specific model; another device’s capabilities are not interchangeable."
+        }
+      ],
+      "actions": [],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "xiaomi-2-pro",
+      "slug": "xiaomi-2-pro",
+      "kind": "hardware",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "ios",
+        "miniapp",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "小米蓝牙遥控器 2 Pro",
+        "en": "Xiaomi Bluetooth Remote 2 Pro"
+      },
+      "summary": {
+        "zh-Hans": "把常用操作放到手边。",
+        "en": "Keep common actions within reach."
+      },
+      "reason": {
+        "zh-Hans": "配合语音软件支持语音输入，按住说话、松开结束。\n支持按键自定义，组合动作和键位方案。\n支持 Mac 和 Windows。",
+        "en": "Works with voice software for voice input: hold to talk and release to stop.\nCustomize buttons, combined actions and key layouts.\nSupports Mac and Windows."
+      },
+      "compatibility": {
+        "zh-Hans": "以当前 App 的设备支持状态为准",
+        "en": "Check support in your current app version"
+      },
+      "platforms": [
+        "mac"
+      ],
+      "image": {
+        "url": "/recommendations/remote-rc003.png",
+        "alt": {
+          "zh-Hans": "小米蓝牙遥控器 2 Pro",
+          "en": "Xiaomi Bluetooth Remote 2 Pro"
+        }
+      },
+      "paragraphs": [
+        {
+          "zh-Hans": "具体按键、语音和触摸能力以该型号的支持说明为准；不能以另一款设备的能力代替。",
+          "en": "Button, voice and touch capabilities depend on the specific model; another device’s capabilities are not interchangeable."
+        }
+      ],
+      "actions": [],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "siri-a2540",
+      "slug": "siri-a2540",
+      "kind": "hardware",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "ios",
+        "miniapp",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "Apple Siri Remote（Lightning）",
+        "en": "Apple Siri Remote (Lightning)"
+      },
+      "summary": {
+        "zh-Hans": "配备语音麦克风与触摸面。搭配自由麦 FreeSay 支持语音输入、按键自定义和触摸移动鼠标。",
+        "en": "Built-in voice microphone and touch surface. Use with the SayAll app for voice input, custom buttons and touch-controlled pointer movement."
+      },
+      "reason": {
+        "zh-Hans": "配合语音软件支持语音输入，按住说话、松开结束。\n支持触摸移动鼠标，滚动页面，轻触点击。\n支持按键自定义，组合动作和键位方案。\n需安装苹果遥控器组件，仅支持 Mac。",
+        "en": "Works with voice software for voice input: hold to talk and release to stop.\nUse the touch surface to move the pointer, scroll pages and click.\nCustomize buttons, combined actions and key layouts.\nRequires the Apple remote component and supports Mac only."
+      },
+      "compatibility": {
+        "zh-Hans": "需安装苹果遥控器组件。",
+        "en": "Requires the Apple remote component."
+      },
+      "platforms": [
+        "mac"
+      ],
+      "image": {
+        "url": "/recommendations/siri-remote.png",
+        "alt": {
+          "zh-Hans": "Apple Siri Remote（Lightning）",
+          "en": "Apple Siri Remote (Lightning)"
+        }
+      },
+      "paragraphs": [
+        {
+          "zh-Hans": "安装时勾选苹果遥控器 Siri Remote 组件，再在 App 中启用。",
+          "en": "Select the Apple Siri Remote component during installation, then enable it in the app."
+        }
+      ],
+      "actions": [],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "siri-a2854",
+      "slug": "siri-a2854",
+      "kind": "hardware",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "ios",
+        "miniapp",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "Apple Siri Remote（USB-C）",
+        "en": "Apple Siri Remote (USB-C)"
+      },
+      "summary": {
+        "zh-Hans": "配备语音麦克风与触摸面。搭配自由麦 FreeSay 支持语音输入、按键自定义和触摸移动鼠标。",
+        "en": "Built-in voice microphone and touch surface. Use with the SayAll app for voice input, custom buttons and touch-controlled pointer movement."
+      },
+      "reason": {
+        "zh-Hans": "配合语音软件支持语音输入，按住说话、松开结束。\n支持触摸移动鼠标，滚动页面，轻触点击。\n支持按键自定义，组合动作和键位方案。\n需安装苹果遥控器组件，仅支持 Mac。",
+        "en": "Works with voice software for voice input: hold to talk and release to stop.\nUse the touch surface to move the pointer, scroll pages and click.\nCustomize buttons, combined actions and key layouts.\nRequires the Apple remote component and supports Mac only."
+      },
+      "compatibility": {
+        "zh-Hans": "需安装苹果遥控器组件。",
+        "en": "Requires the Apple remote component."
+      },
+      "platforms": [
+        "mac"
+      ],
+      "image": {
+        "url": "/recommendations/siri-remote.png",
+        "alt": {
+          "zh-Hans": "Apple Siri Remote（USB-C）",
+          "en": "Apple Siri Remote (USB-C)"
+        }
+      },
+      "paragraphs": [
+        {
+          "zh-Hans": "安装时勾选苹果遥控器 Siri Remote 组件，再在 App 中启用。",
+          "en": "Select the Apple Siri Remote component during installation, then enable it in the app."
+        }
+      ],
+      "actions": [],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "vokie",
+      "slug": "vokie",
+      "kind": "software",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "ios",
+        "miniapp",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "vokie",
+        "en": "vokie"
+      },
+      "summary": {
+        "zh-Hans": "开口即成文",
+        "en": "Speak. Turn it into text."
+      },
+      "reason": {
+        "zh-Hans": "语音输入免费，强大的整理效果 —— Agent 沟通的绝佳搭档。支持 Mac，Windows 和 Linux。即将支持 iOS 和 Android。",
+        "en": "Free voice input with powerful organization — an ideal companion for communicating with Agents. Supports Mac / Windows / Linux. Android and iOS coming soon."
+      },
+      "compatibility": {
+        "zh-Hans": "Mac / Windows / Linux 已支持，Android / iOS 即将支持；其中 Mac / Windows 可与自由麦 FreeSay 搭配使用",
+        "en": "Mac / Windows / Linux available now; Android and iOS coming soon. Mac and Windows work with SayAll."
+      },
+      "platforms": [
+        "mac",
+        "windows",
+        "linux",
+        "android",
+        "ios"
+      ],
+      "image": {
+        "url": "/recommendations/vokie-app-icon.png",
+        "alt": {
+          "zh-Hans": "vokie 官方 Logo",
+          "en": "Official vokie logo"
+        }
+      },
+      "paragraphs": [
+        {
+          "zh-Hans": "vokie 支持 Mac / Windows / Linux，Android / iOS 即将支持；Mac 和 Windows 版本已适配自由麦 FreeSay。",
+          "en": "vokie runs on Mac / Windows / Linux with Android and iOS coming soon; the Mac and Windows versions are integrated with SayAll."
+        },
+        {
+          "zh-Hans": "安装和配置方法以 vokie 官网与自由麦 FreeSay 当前版本的说明为准。",
+          "en": "Follow the setup instructions on the vokie website and for your current SayAll version."
+        }
+      ],
+      "actions": [
+        {
+          "surface": "mac",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://vokie.com/"
+        },
+        {
+          "surface": "ios",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://vokie.com/"
+        },
+        {
+          "surface": "website",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://vokie.com/"
+        }
+      ],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "doubao",
+      "slug": "doubao",
+      "kind": "software",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "豆包输入法",
+        "en": "Doubao"
+      },
+      "summary": {
+        "zh-Hans": "语音输入工具，支持 Mac 和 Windows",
+        "en": "Voice typing"
+      },
+      "reason": {
+        "zh-Hans": "语音输入工具，支持 Mac 和 Windows",
+        "en": "Voice typing on Mac and Windows"
+      },
+      "compatibility": {
+        "zh-Hans": "搭配自由麦 FreeSay，支持 Mac 和 Windows。",
+        "en": "Use with 自由麦 FreeSay on Mac and Windows."
+      },
+      "platforms": [
+        "mac",
+        "windows"
+      ],
+      "image": {
+        "url": "/recommendations/doubao-app-icon.png",
+        "alt": {
+          "zh-Hans": "豆包输入法",
+          "en": "Doubao"
+        }
+      },
+      "paragraphs": [],
+      "actions": [
+        {
+          "surface": "mac",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://shurufa.doubao.com/pc"
+        },
+        {
+          "surface": "website",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://shurufa.doubao.com/pc"
+        }
+      ],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "wetype",
+      "slug": "wetype",
+      "kind": "software",
+      "availability": "available",
+      "surfaces": [
+        "mac",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "微信输入法",
+        "en": "WeType"
+      },
+      "summary": {
+        "zh-Hans": "语音输入工具，支持 Mac 和 Windows",
+        "en": "Voice typing"
+      },
+      "reason": {
+        "zh-Hans": "语音输入工具，支持 Mac 和 Windows",
+        "en": "Voice typing on Mac and Windows"
+      },
+      "compatibility": {
+        "zh-Hans": "搭配自由麦 FreeSay，支持 Mac 和 Windows。",
+        "en": "Use with 自由麦 FreeSay on Mac and Windows."
+      },
+      "platforms": [
+        "mac",
+        "windows"
+      ],
+      "image": {
+        "url": "/recommendations/wechat-ime-app-icon.png",
+        "alt": {
+          "zh-Hans": "微信输入法",
+          "en": "WeType"
+        }
+      },
+      "paragraphs": [],
+      "actions": [
+        {
+          "surface": "mac",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://z.weixin.qq.com/"
+        },
+        {
+          "surface": "website",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "打开官网",
+            "en": "Website"
+          },
+          "url": "https://z.weixin.qq.com/"
+        }
+      ],
+      "activeFrom": null,
+      "activeUntil": null
+    },
+    {
+      "id": "chatterfly",
+      "slug": "chatterfly",
+      "kind": "software",
+      "availability": "beta",
+      "surfaces": [
+        "mac",
+        "windows",
+        "website"
+      ],
+      "title": {
+        "zh-Hans": "ChatterFly",
+        "en": "ChatterFly"
+      },
+      "summary": {
+        "zh-Hans": "腾讯 AI 语音输入，说完即成稿",
+        "en": "Tencent AI voice input — speak, get a finished draft"
+      },
+      "reason": {
+        "zh-Hans": "腾讯推出的 AI 原生语音输入工具（也称「元宝输入法」）。不只是把话转成文字，还会自动去掉口头语、理顺逻辑、润色措辞，直接给出可用的邮件或汇报。内置会议纪要、工作汇报、邮件润色、营销文案等六套场景技能。按住说话、松开即完成转写。目前为邀请码内测。",
+        "en": "A Tencent AI-native voice input tool (also called \"Yuanbao IME\"). Beyond transcription it strips filler words, tidies logic and polishes wording into a usable draft. Ships six scenario skills (meeting notes, status reports, email polish, marketing copy, etc.). Hold to talk, release to finish. Currently invite-only beta."
+      },
+      "compatibility": {
+        "zh-Hans": "Windows / macOS 桌面端，需邀请码登录。与自由麦搭配：把它的语音快捷键设为遥控器语音键即可。",
+        "en": "Windows / macOS desktop, invite code required. With FreeSay: set its voice hotkey to the remote voice key."
+      },
+      "platforms": [
+        "windows",
+        "mac"
+      ],
+      "image": {
+        "url": "/recommendations/chatterfly-app-icon.png",
+        "alt": {
+          "zh-Hans": "ChatterFly",
+          "en": "ChatterFly"
+        }
+      },
+      "paragraphs": [],
+      "actions": [
+        {
+          "surface": "website",
+          "kind": "https",
+          "label": {
+            "zh-Hans": "官网（申请内测）",
+            "en": "Website (beta access)"
+          },
+          "url": "https://chatterfly.tencent.com/"
+        }
+      ],
+      "activeFrom": null,
+      "activeUntil": null
+    }
+  ]
+}
