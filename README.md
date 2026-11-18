@@ -1,6 +1,5 @@
-<p align="center">
-# 自由麦 FreeSay for Windows
-</p>
+# <p align="center">自由麦 FreeSay for Windows</p>
+
 <p align="center">
 把蓝牙语音遥控器变成电脑的无线麦克风与快捷键面板
 </p>
